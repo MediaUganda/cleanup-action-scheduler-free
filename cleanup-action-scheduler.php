@@ -98,3 +98,5 @@ if ( function_exists( 'cfas_fs' ) ) {
 	}
 
 }
+
+cfas_fs()->add_filter( 'pricing/show_annual_in_monthly', '__return_false' );
