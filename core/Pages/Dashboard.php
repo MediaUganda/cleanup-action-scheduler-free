@@ -131,14 +131,20 @@ class Dashboard extends BaseController {
 	 * @return void
 	 */
 	public function clean_duration() {
+        $options = get_option( 'clean_settings' );
 
-		$options = get_option( 'clean_settings' );
+        if ( false === is_array( $options ) ) {
+            $options = [
+                'period'   => 'DAYS',
+                'duration' => '',
+            ];
+        }
 		?>
-			<input type='number' min='1' name='clean_settings[duration]' value='<?php echo ! empty( $options['duration'] ) ? esc_attr( $options['duration'] ) : ''; ?>'/>
+			<input type='number' min='1' name='clean_settings[duration]' value='<?php echo ! empty( $options['duration'] ) ? esc_attr( $options['duration'] ) : ''; ?>' placeholder='30' />
 			<select name='clean_settings[period]'>
-				<option value='SECONDS' <?php selected( $options['period'], 'SECONDS' ); ?>><?php esc_attr_e( 'Seconds', 'cleanup-action-scheduler' ); ?></option>
-				<option value='HRS' <?php selected( $options['period'], 'HRS' ); ?>><?php esc_attr_e( 'Hours', 'cleanup-action-scheduler' ); ?></option>
 				<option value='DAYS' <?php selected( $options['period'], 'DAYS' ); ?>><?php esc_attr_e( 'Days', 'cleanup-action-scheduler' ); ?></option>
+				<option value='HRS' <?php selected( $options['period'], 'HRS' ); ?>><?php esc_attr_e( 'Hours', 'cleanup-action-scheduler' ); ?></option>
+				<option value='SECONDS' <?php selected( $options['period'], 'SECONDS' ); ?>><?php esc_attr_e( 'Seconds', 'cleanup-action-scheduler' ); ?></option>
 			</select>
 		<?php
 			printf(
