@@ -29,46 +29,44 @@ if ( function_exists( 'cfas_fs' ) ) {
 		 *
 		 * @return void
 		 */
-		function cfas_fs()
-		{
+		function cfas_fs() {
 			global  $cfas_fs ;
-			
 			if ( !isset( $cfas_fs ) ) {
-				// Include Freemius SDK.
 				require_once dirname( __FILE__ ) . '/freemius/start.php';
-				$cfas_fs = fs_dynamic_init( array(
-					'id'             => '10041',
-					'slug'           => 'cleanup-action-scheduler',
-					'premium_slug'   => 'clean-action-scheduler-premium',
-					'type'           => 'plugin',
-					'public_key'     => 'pk_ebc105f54c24fca14c71b712a565b',
-					'is_premium'     => false,
-					'premium_suffix' => 'Business',
-					'has_addons'     => false,
-					'has_paid_plans' => true,
-					'menu'           => array(
-					'slug'       => 'cleanup-as-plugin',
-					'first-path' => 'tools.php?page=cleanup-as-plugin',
-					'support'    => false,
-					'parent'     => array(
-					'slug' => 'tools.php',
-				),
-				),
-					'is_live'        => true,
-				) );
+                $cfas_fs = fs_dynamic_init( array(
+                    'id'                  => '10041',
+                    'slug'                => 'cleanup-action-scheduler',
+                    'premium_slug'        => 'clean-action-scheduler-premium',
+                    'type'                => 'plugin',
+                    'public_key'          => 'pk_ebc105f54c24fca14c71b712a565b',
+                    'is_premium'          => true,
+                    // If your plugin is a serviceware, set this option to false.
+                    'has_premium_version' => true,
+                    'has_addons'          => false,
+                    'has_paid_plans'      => true,
+                    'has_affiliation'     => 'selected',
+                    'menu'                => array(
+                        'slug'           => 'cleanup-as-plugin',
+                        'first-path'     => 'tools.php?page=cleanup-as-plugin',
+                        'support'        => false,
+                        'parent'         => array(
+                            'slug' => 'tools.php',
+                        ),
+                    ),
+                ) );
 			}
-			
 			return $cfas_fs;
 		}
-		
-		// Init Freemius.
+
 		cfas_fs();
-		// Signal that SDK was initiated.
+
 		do_action( 'cfas_fs_loaded' );
+
 		// Require once the Composer Autoload.
 		if ( file_exists( dirname( __FILE__ ) . '/lib/autoload.php' ) ) {
 			include_once dirname( __FILE__ ) . '/lib/autoload.php';
 		}
+
 		/**
 		 * The code that runs during plugin activation.
 		 *
