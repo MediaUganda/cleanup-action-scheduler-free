@@ -117,12 +117,12 @@ class Dashboard extends BaseController {
 	 * @return void
 	 */
 	public function clean_settings_section_callback() {
-
+		
 		printf(
 			'<hr><h3>%s</h3>',
 			esc_attr__( 'Schedule deletion of Completed Actions', 'cleanup-action-scheduler' )
 		);
-
+		
 	}
 
 	/**
@@ -131,8 +131,8 @@ class Dashboard extends BaseController {
 	 * @return void
 	 */
 	public function clean_duration() {
+		
         $options = get_option( 'clean_settings' );
-
         if ( false === is_array( $options ) ) {
             $options = [
                 'period'   => 'DAYS',
@@ -159,7 +159,7 @@ class Dashboard extends BaseController {
 	 * @return void
 	 */
 	public function set_queue_batch_size() {
-
+		
 		$options          = get_option( 'clean_settings' );
 		$queue_batch_size = ! empty( $options['queue_batch_size'] ) ? $options['queue_batch_size'] : '';
 		?>
