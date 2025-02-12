@@ -134,10 +134,10 @@ class Dashboard extends BaseController {
 	        $options = get_option( 'clean_settings' );
 	
 	        if ( false === is_array( $options ) ) {
-	            $options = [
+	            $options = array(
 			    'period'   => 'DAYS',
 			    'duration' => '',
-	            ];
+	            );
 	        }
 		?>
 			<input type='number' min='1' name='clean_settings[duration]' value='<?php echo ! empty( $options['duration'] ) ? esc_attr( $options['duration'] ) : ''; ?>' placeholder='30' />
