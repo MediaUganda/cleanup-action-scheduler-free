@@ -1,6 +1,6 @@
 name: 'Check Plugin with PCP'
 on:
-  push:
+  pull_request:
     branches:
       - main
 
